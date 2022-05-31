@@ -1,9 +1,42 @@
-body {
-    background: blue;
-    color: yellow;
-    font-family: 'Comic Sans MS', sans-serif;
+.panel-container {
+	margin-bottom: 4rem;
+	display: flex;
+	overflow-x: scroll;
+	width: 300%;
+}
+div,body {
+	-ms-overflow-style: none; /* Edge, Internet Explorer */
+	scrollbar-width: none; /* Firefox */
+	// overflow-y: scroll;
 }
 
-h1 {
-    color: white;
+// hides scrollbars while allowing to scroll
+div::-webkit-scrollbar,body::-webkit-scrollbar {
+	display: none; /* Chrome, Safari, Opera */
+}
+.task-edit {
+	cursor: pointer;
+}
+.add-task {
+	cursor: pointer;
+}
+
+.bottom-music-player {
+	box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.24);
+	-webkit-box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.24);
+	-moz-box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.24);
+}
+.panel {
+    max-height: 600px;
+    overflow-y: scroll;
+    position: relative;
+}
+.task-edit {
+	cursor: pointer;
+}
+.search-icon {
+	filter: opacity(50%);
+}
+.link-pic {
+	filter: brightness(0) invert(1);
 }

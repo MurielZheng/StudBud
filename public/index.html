@@ -1,14 +1,554 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StudBud</title>
-    <link rel="stylesheet" href="styles/styles.scss" />
-</head>
-<body>
-    <h1>Hello World!</h1>
-    <p>This is a paragraph.</p>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>StudBud</title>
+		<link rel="stylesheet" href="styles/styles.scss" />
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body>
+		<img src="/public/oldtown.jpg" class="hidden" alt="" />
+		<audio src="/public/Mika — Elle me dit.mp3" id="audio-player"></audio>
+		<audio src="/public/Lil Nas X - Old Town Road (ft. Billy Ray Cyrus).mp3" id="audio-player2"></audio>
+		<div class="w-full h-full">
+			<header class="flex w-full justify-between py-6 px-8 items-center">
+				<div class="hidden sm:block">
+					<img src="/public/logo.png" alt="" />
+				</div>
+				<div class="flex bg-gray-300 ml-auto mr-auto rounded-lg sm:relative sm:right-16 cursor-pointer TCtoggle">
+					<div class="w-28 sm:drop-shadow-lg sm:w-60 text-center py-3 rounded-lg bg-white shadow-lg task-btn">TASK</div>
+					<div class="w-28 sm:w-60 text-center rounded-lg py-3 shadow-lg content-btn">CONTENT</div>
+				</div>
+				<div class="flex items-center overflow-visible bg-green-100 rounded-3xl relative">
+					<p class="text-3xl cursor-pointer">⏱</p>
+					<p class="hidden sm:block text-green-600 sm:p-3 timer-btn cursor-pointer timer-time-nav">TIMER OFF</p>
+					<div class="absolute right-4 top-16 text-black shadow-lg w-80 h-72 z-10 hidden timer-start">
+						<div class="mt-8 flex justify-center items-center">
+							<div class="bg-green-50 flex rounded-lg cursor-pointer">
+								<div class="bg-white p-2 shadow-lg border-1 border-black rounded-lg">POMODORO</div>
+								<div class="p-2 rounded-lg">STOPWATCH</div>
+							</div>
+						</div>
+						<div class="flex justify-around items-center px-6 text-gray-500 mt-4">
+							<p class="cursor-pointer add-five">+5 Minute</p>
+							<p class="cursor-pointer add-ten">+10 Minute</p>
+							<p class="cursor-pointer add-fifteen">+15 Minute</p>
+						</div>
+						<div class="text-5xl flex justify-center items-center my-8 curr-time">25:00</div>
+						<div class="flex justify-between px-6 items-center">
+							<div class="rounded-lg p-2 bg-gray-400 text-white pause-timer cursor-pointer">PAUSE</div>
+							<div>Round <span class="text-green-500">0/4</span></div>
+							<div class="rounded-lg p-2 bg-green-500 text-white end-timer cursor-pointer">END</div>
+						</div>
+					</div>
+
+					<div class="absolute right-4 top-16 text-black shadow-lg w-80 h-60 z-10 hidden timer-stop">
+						<div class="mt-8 flex justify-center items-center">
+							<div class="bg-green-50 flex rounded-lg cursor-pointer">
+								<div class="bg-white p-2 shadow-lg border-1 border-black rounded-lg">POMODORO</div>
+								<div class="p-2 rounded-lg">STOPWATCH</div>
+							</div>
+						</div>
+						<div class="text-5xl flex justify-center items-center my-8">25:00</div>
+						<div class="flex justify-between px-6 items-center">
+							<div class="rounded-lg p-2 bg-gray-400 text-white cursor-pointer cancel-timer">CANCEL</div>
+							<div>Round <span class="text-green-500">0/4</span></div>
+							<div class="rounded-lg p-2 bg-green-500 text-white start-timer cursor-pointer">START</div>
+						</div>
+					</div>
+				</div>
+			</header>
+			<div class="w-full deco2014">
+				<div class="w-full task">
+					<div class="flex w-full h-20 p-4 bg-blue-50 mb-4">
+						<div class="p-3 bg-blue-300 text-white font-bold rounded-2xl mr-4 cursor-pointer deco2014-btn">DECO2014</div>
+						<div class="p-3 bg-blue-100 text-gray-400 font-bold rounded-2xl mr-4 cursor-pointer deco2020-btn">DECO2020</div>
+						<div class="p-3 bg-blue-100 text-gray-400 font-bold rounded-2xl mr-4 cursor-pointer deco2017-btn">DECO2017</div>
+						<div class="py-1 px-5 rounded-2xl bg-blue-100 text-gray-400 font-bold text-3xl cursor-pointer">+</div>
+						<div class="ml-auto flex items-center">
+							<input type="search" class="p-3 rounded-2xl bg-blue-100" />
+							<img src="/public/search.png" class="w-6 h-6 relative right-14 search-icon" alt="" />
+						</div>
+					</div>
+					<div class="panel-container">
+						<div class="inline-flex flex-col w-80 mx-8 bg-purple-200 h-fit panel">
+							<h1 class="text-center text-2xl font-sans font-bold text-purple-400 my-2">To Do</h1>
+	
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							
+							<div class="h-12 bg-purple-400 text-white flex justify-center items-center w-full rounded-t-xl add-task">+ ADD TASK</div>
+						</div>
+						<div class="inline-flex flex-col w-80 mx-8 bg-orange-200 h-fit panel">
+							<h1 class="text-center text-2xl font-sans font-bold text-orange-400 my-2">In Progress</h1>
+	
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-orange-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-orange-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-orange-100 text-orange-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="h-12 bg-orange-400 text-white flex justify-center items-center w-full rounded-t-xl add-task">+ ADD TASK</div>
+						</div>
+						<div class="inline-flex flex-col w-80 mx-8 bg-green-200 h-fit panel">
+							<h1 class="text-center text-2xl font-sans font-bold text-green-400 my-2">Done</h1>
+	
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-green-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-green-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-green-100 text-green-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="h-12 bg-green-400 text-white flex justify-center items-center w-full rounded-t-xl add-task">+ ADD TASK</div>
+						</div>
+					</div>
+	
+					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center task-edit-panel hidden">
+						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
+	
+						<div class="w-2/5 h-2/5 bg-white z-20 opacity-100 p-8 rounded-3xl relative">
+							<div class="flex justify-center items-center mb-8">
+								<h1 class="ml-auto font-bold text-xl">Add/Edit Task</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 task-edit-panel-close cursor-pointer">X</p>
+							</div>
+							<div class="flex">
+								<div class="mr-8 ml-4">
+									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add-title" placeholder="Title" />
+									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add0-desc" placeholder="Description" />
+									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block" placeholder="Subject" />
+								</div>
+								<div>
+									<input type="datetime-local" class="p-4 bg-gray-200 rounded-xl w-80 block mb-4" value="2022-06-12T19:30" />
+									<select name="" id="" class="p-4 bg-gray-200 rounded-xl block w-80 mb-4 text-gray-400">
+										<option value="Status">Status</option>
+										<option value="Status">To Do</option>
+										<option value="Status">In Progress</option>
+										<option value="Status">Done</option>
+									</select>
+									<select name="" id="" class="p-4 bg-gray-200 rounded-xl block w-80 text-gray-400">
+										<option value="Status">Proior Rating</option>
+										<option value="Status">High</option>
+										<option value="Status">Middle</option>
+										<option value="Status">Low</option>
+									</select>
+								</div>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-3xl">
+								<button class="flex-1 bg-gray-400 rounded-bl-3xl font-bold text-lg text-white cancel-add">Cancel</button>
+								<button class="flex-1 bg-purple-400 rounded-br-3xl font-bold text-lg text-white save-task">Save</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w-full content hidden">
+					<div class="flex w-full flex-wrap">
+						<div class="shadow-lg rounded-xl w-80 px-4 py-2 m-2">
+							<div class="flex items-center justify-around">
+								<p>🔗</p>
+								<a href="http://www.baidu.com" class="links" target="_blank">http://www.baidu.com</a>
+								<p class="edit-resource cursor-pointer">✏</p>
+							</div>
+							<hr class="bg-purple-400 h-1 w-full my-2" />
+							<h1 class="font-bold text-xl">Title of article</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea tempora, rem totam autem</p>
+						</div>
+						<div class="shadow-lg rounded-xl w-80 px-4 py-2 m-2">
+							<div class="flex items-center justify-around">
+								<p>🔗</p>
+								<a href="http://www.google.com" class="links" target="_blank">http://www.google.com</a>
+								<p class="edit-resource cursor-pointer">✏</p>
+							</div>
+							<hr class="bg-purple-400 h-1 w-full my-2" />
+							<h1 class="font-bold text-xl">Title of article</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea tempora, rem totam autem</p>
+						</div>
+					</div>
+					<div class="absolute bottom-32 right-0">
+						<div class="flex items-center p-3 rounded-2xl bg-green-400 cursor-pointer mb-4">
+							<img src="/public/link.png" class="w-6 h-6 mr-2 link-pic" alt="" />
+							<button class="text-white font-bold text-xl open-all-link">OPEN ALL RESOURCE</button>
+						</div>
+						<div class="flex items-center p-3 rounded-2xl bg-purple-400 cursor-pointer">
+							<img src="/public/plus.png" class="w-6 h-6 mr-2 link-pic" alt="" />
+							<button class="text-white font-bold text-xl add-new-resource">ADD NEW RESOURCE</button>
+						</div>
+					</div>
+					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center resource-edit-panel hidden">
+						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
+	
+						<div class="w-2/5 h-3/6 bg-white z-20 opacity-100 p-8 rounded-3xl relative">
+							<div class="flex justify-center items-center mb-8">
+								<h1 class="ml-auto font-bold text-xl">Add/Edit Resource</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 resource-edit-panel-close cursor-pointer">X</p>
+							</div>
+							<div class="px-4">
+								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-url" placeholder="URL" />
+								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-title" placeholder="Title" />
+								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-subject" placeholder="Subject" />
+								<textarea name="" id="" class="w-full h-24 bg-gray-200 rounded-xl p-4" placeholder="Add the Description here..."></textarea>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-3xl">
+								<button class="flex-1 bg-gray-400 rounded-bl-3xl font-bold text-lg text-white cancel-add">Cancel</button>
+								<button class="flex-1 bg-purple-400 rounded-br-3xl font-bold text-lg text-white save-task">Save</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="w-full deco2020 hidden">
+				<div class="w-full task">
+					<div class="flex w-full h-20 p-4 bg-blue-50 mb-4">
+						<div class="p-3 bg-blue-100 text-gray-400 font-bold rounded-2xl mr-4 cursor-pointer deco2014-btn">DECO2014</div>
+						<div class="p-3 bg-blue-300 text-white font-bold rounded-2xl mr-4 cursor-pointer deco2020-btn">DECO2020</div>
+						<div class="p-3 bg-blue-100 text-gray-400 font-bold rounded-2xl mr-4 cursor-pointer deco2017-btn">DECO2017</div>
+						<div class="py-1 px-5 rounded-2xl bg-blue-100 text-gray-400 font-bold text-3xl cursor-pointer">+</div>
+						<div class="ml-auto flex items-center">
+							<input type="search" class="p-3 rounded-2xl bg-blue-100" />
+							<img src="/public/search.png" class="w-6 h-6 relative right-14 search-icon" alt="" />
+						</div>
+					</div>
+					<div class="panel-container">
+						<div class="inline-flex flex-col w-80 mx-8 bg-purple-200 h-fit panel">
+							<h1 class="text-center text-2xl font-sans font-bold text-purple-400 my-2">To Do</h1>
+	
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-purple-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-purple-100 text-purple-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="h-12 bg-purple-400 text-white flex justify-center items-center w-full rounded-t-xl add-task">+ ADD TASK</div>
+						</div>
+						<div class="inline-flex flex-col w-80 mx-8 bg-orange-200 h-fit panel">
+							<h1 class="text-center text-2xl font-sans font-bold text-orange-400 my-2">In Progress</h1>
+	
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-orange-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-orange-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-orange-100 text-orange-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="h-12 bg-orange-400 text-white flex justify-center items-center w-full rounded-t-xl add-task">+ ADD TASK</div>
+						</div>
+						<div class="inline-flex flex-col w-80 mx-8 bg-green-200 h-fit panel">
+							<h1 class="text-center text-2xl font-sans font-bold text-green-400 my-2">Done</h1>
+	
+							<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2">
+								<div class="flex">
+									<div class="px-1 border-blue-200 border-2 text-sm mx-1 font-bold">LOW</div>
+									<div class="px-1 bg-gray-200 border-2 text-sm mx-1 font-bold">Iteration</div>
+									<div class="bg-green-300 ml-auto rounded-lg text-sm p-1 task-edit">✏</div>
+								</div>
+								<div>
+									<h1 class="font-bold text-xl mt-3">Flow Diagram</h1>
+									<p>Lorem ipsum dolor sit amet, consec.</p>
+								</div>
+								<hr class="my-2" />
+								<div class="flex justify-between">
+									<p class="text-green-500">DUE 18 APRIL 22.</p>
+									<div class="p-2 bg-green-100 text-green-400 rounded-lg text-sm">2 Hr 45 Min</div>
+								</div>
+							</div>
+							<div class="h-12 bg-green-400 text-white flex justify-center items-center w-full rounded-t-xl add-task">+ ADD TASK</div>
+						</div>
+					</div>
+	
+					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center task-edit-panel hidden">
+						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
+	
+						<div class="w-2/5 h-2/5 bg-white z-20 opacity-100 p-8 rounded-3xl relative">
+							<div class="flex justify-center items-center mb-8">
+								<h1 class="ml-auto font-bold text-xl">Add/Edit Task</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 task-edit-panel-close cursor-pointer">X</p>
+							</div>
+							<div class="flex">
+								<div class="mr-8 ml-4">
+									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add-title" placeholder="Title" />
+									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add0-desc" placeholder="Description" />
+									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block" placeholder="Subject" />
+								</div>
+								<div>
+									<input type="datetime-local" class="p-4 bg-gray-200 rounded-xl w-80 block mb-4" value="2022-06-12T19:30" />
+									<select name="" id="" class="p-4 bg-gray-200 rounded-xl block w-80 mb-4 text-gray-400">
+										<option value="Status">Status</option>
+										<option value="Status">To Do</option>
+										<option value="Status">In Progress</option>
+										<option value="Status">Done</option>
+									</select>
+									<select name="" id="" class="p-4 bg-gray-200 rounded-xl block w-80 text-gray-400">
+										<option value="Status">Proior Rating</option>
+										<option value="Status">High</option>
+										<option value="Status">Middle</option>
+										<option value="Status">Low</option>
+									</select>
+								</div>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-3xl">
+								<button class="flex-1 bg-gray-400 rounded-bl-3xl font-bold text-lg text-white cancel-add">Cancel</button>
+								<button class="flex-1 bg-purple-400 rounded-br-3xl font-bold text-lg text-white save-task">Save</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="w-full content hidden">
+					<div class="flex w-full flex-wrap">
+						<div class="shadow-lg rounded-xl w-80 px-4 py-2 m-2">
+							<div class="flex items-center justify-around">
+								<p>🔗</p>
+								<a href="http://www.baidu.com" class="links" target="_blank">http://www.baidu.com</a>
+								<p class="edit-resource cursor-pointer">✏</p>
+							</div>
+							<hr class="bg-purple-400 h-1 w-full my-2" />
+							<h1 class="font-bold text-xl">Title of article</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea tempora, rem totam autem</p>
+						</div>
+						<div class="shadow-lg rounded-xl w-80 px-4 py-2 m-2">
+							<div class="flex items-center justify-around">
+								<p>🔗</p>
+								<a href="http://www.google.com" class="links" target="_blank">http://www.google.com</a>
+								<p class="edit-resource cursor-pointer">✏</p>
+							</div>
+							<hr class="bg-purple-400 h-1 w-full my-2" />
+							<h1 class="font-bold text-xl">Title of article</h1>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea tempora, rem totam autem</p>
+						</div>
+					</div>
+					<div class="absolute bottom-32 right-0">
+						<div class="flex items-center p-3 rounded-2xl bg-green-400 cursor-pointer mb-4">
+							<img src="/public/link.png" class="w-6 h-6 mr-2 link-pic" alt="" />
+							<button class="text-white font-bold text-xl open-all-link">OPEN ALL RESOURCE</button>
+						</div>
+						<div class="flex items-center p-3 rounded-2xl bg-purple-400 cursor-pointer">
+							<img src="/public/plus.png" class="w-6 h-6 mr-2 link-pic" alt="" />
+							<button class="text-white font-bold text-xl add-new-resource">ADD NEW RESOURCE</button>
+						</div>
+					</div>
+					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center resource-edit-panel hidden">
+						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
+	
+						<div class="w-2/5 h-3/6 bg-white z-20 opacity-100 p-8 rounded-3xl relative">
+							<div class="flex justify-center items-center mb-8">
+								<h1 class="ml-auto font-bold text-xl">Add/Edit Resource</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 resource-edit-panel-close cursor-pointer">X</p>
+							</div>
+							<div class="px-4">
+								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-url" placeholder="URL" />
+								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-title" placeholder="Title" />
+								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-subject" placeholder="Subject" />
+								<textarea name="" id="" class="w-full h-24 bg-gray-200 rounded-xl p-4" placeholder="Add the Description here..."></textarea>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-3xl">
+								<button class="flex-1 bg-gray-400 rounded-bl-3xl font-bold text-lg text-white cancel-add">Cancel</button>
+								<button class="flex-1 bg-purple-400 rounded-br-3xl font-bold text-lg text-white save-task">Save</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="fixed bottom-0 left-0 flex w-screen h-16 items-center bottom-music-player sm:py-2 sm:h-20">
+				<!-- <div class="w-full absolute bg-purple-400 h-2 top-0 left-0">
+ 
+            </div> -->
+				<div class="sm:ml-8">
+					<img src="/public/ellemidit.jfif" alt="" class="w-16 h-16 song-pic" />
+				</div>
+				<div class="ml-4">
+					<p class="font-bold song-name">Elle me dit</p>
+					<p class="song-author">MIKA</p>
+				</div>
+				<div class="ml-auto sm:mr-auto sm:flex items-center">
+					<img src="/public/previous.png" class="w-6 h-6 hidden sm:block mr-8 cursor-pointer last-audio" alt="" />
+					<img src="/public/play.png" class="w-6 h-6 sm:w-10 sm:h-10 cursor-pointer" id="play-audio" alt="" />
+					<img src="/public/pause.png" class="w-6 h-6 sm:w-10 sm:h-10 cursor-pointer hidden" id="pause-audio" alt="" />
+					<img src="/public/next.png" class="w-6 h-6 hidden sm:block ml-8 cursor-pointer next-audio" alt="" />
+				</div>
+				<div class="ml-4 mr-4">
+					<img src="/public/list.png" class="w-6 h-6 cursor-pointer list-btn" alt="" />
+				</div>
+				<div class="absolute right-8 bottom-28 w-64 shadow-lg p-4 playlist hidden">
+					<h1 class="text-purple-400 text-md">Play List</h1>
+					<div class="flex items-center p-2">
+						<div class="mr-2">01</div>
+						<div class="mr-2">
+							<img src="/public/ellemidit.jfif" class="w-10 h-10" alt="" />
+						</div>
+						<div>
+							<p class="font-bold">Elle me dit</p>
+							<p>MIKA</p>
+						</div>
+						<div class="ml-auto">
+							<img src="/public/play.png" class="w-4 h-4" alt="" />
+						</div>
+					</div>
+					<div class="flex items-center p-2">
+						<div class="mr-2">02</div>
+						<div class="mr-2">
+							<img src="/public/oldtown.jpg" class="w-10 h-10" alt="" />
+						</div>
+						<div>
+							<p class="font-bold">Old Town Road</p>
+							<p>Lil Nas X</p>
+						</div>
+						<div class="ml-auto">
+							<img src="/public/play.png" class="w-4 h-4" alt="" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+		<script src="/public/scripts/main.js"></script>
+	</body>
 </html>
