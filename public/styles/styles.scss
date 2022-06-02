@@ -1,18 +1,36 @@
+html, body {
+	width: 100%;
+	height: 100%;
+}
+
 .panel-container {
 	margin-bottom: 4rem;
 	display: flex;
 	overflow-x: scroll;
-	width: 300%;
+	width: 100%;
 }
 div,body {
-	-ms-overflow-style: none; /* Edge, Internet Explorer */
-	scrollbar-width: none; /* Firefox */
+	//-ms-overflow-style: none; /* Edge, Internet Explorer */
+	//scrollbar-width: none; /* Firefox */
 	// overflow-y: scroll;
 }
 
 // hides scrollbars while allowing to scroll
-div::-webkit-scrollbar,body::-webkit-scrollbar {
-	display: none; /* Chrome, Safari, Opera */
+//div::-webkit-scrollbar,body::-webkit-scrollbar {
+//	display: none; /* Chrome, Safari, Opera */
+//}
+::-webkit-scrollbar {
+	width : 8px;
+	height: 3px;
+}
+::-webkit-scrollbar-thumb {
+	border-radius: 8px;
+	box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+	background   : #c4c4c4;
+}
+::-webkit-scrollbar-track {
+	background: transparent;
+	border-radius: 8px;
 }
 .task-edit {
 	cursor: pointer;
@@ -22,14 +40,16 @@ div::-webkit-scrollbar,body::-webkit-scrollbar {
 }
 
 .bottom-music-player {
-	box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.24);
-	-webkit-box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.24);
-	-moz-box-shadow: 0px -8px 5px 1px rgba(0, 0, 0, 0.24);
+	box-shadow: 0 -8px 10px 1px #7b7b7b3d;
 }
 .panel {
-    max-height: 600px;
-    overflow-y: scroll;
     position: relative;
+
+	> .task-list {
+		max-height: 550px;
+		overflow-y: scroll;
+		margin-bottom: 50px;
+	}
 }
 .task-edit {
 	cursor: pointer;
@@ -39,4 +59,288 @@ div::-webkit-scrollbar,body::-webkit-scrollbar {
 }
 .link-pic {
 	filter: brightness(0) invert(1);
+}
+
+.panel {
+	border-radius: 10px;
+	flex: none;
+	width: 22rem;
+
+	&:nth-child(1) {
+		color: #825fd7;
+		background-color: #f6f5fd;
+
+		.task-edit {
+			background-color: #f6f5fd;
+		}
+	}
+
+	&:nth-child(2) {
+		color: #fdb93e;
+		background-color: #fdf8f2;
+
+		.task-edit {
+			background-color: #fdf8f2;
+		}
+	}
+
+	&:nth-child(3) {
+		color: #5cdf93;
+		background-color: #eff9f0;
+
+		.task-edit {
+			background-color: #eff9f0;
+		}
+	}
+
+	.task-date {
+		color: #9c85e2;
+	}
+
+	.task-period {
+		color: #acaef9;
+		padding: 4px 10px;
+		background-color: #f6f5fd;
+		font-size: 14px;
+		font-weight: 600;
+	}
+}
+.add-column {
+	color: #825fd7;
+	border: 2px solid #825fd7;
+	background-color: #f6f5fd;
+}
+.main-section {
+	height: calc(100% - 197px);
+	overflow-x: auto;
+}
+.add-task {
+	position: absolute;
+	bottom: 0;
+	border-radius: 0 0 10px 10px;
+}
+.add-task-purple {
+	background-color: #a6a8fd;
+}
+.add-task-orange {
+	background-color: #fdb93e;
+}
+.TCtoggle {
+	padding: 2px;
+	background-color: #e7ecf2;
+}
+.TCtoggle > div {
+	font-size: 20px;
+	font-weight: bold;
+}
+.timer {
+	width: 35px;
+	height: 35px;
+	background-color: #52d88c;
+	color: #ffffff;
+	border-radius: 50%;
+	font-size: 35px !important;
+}
+.timer-wrapper {
+	padding-left: 5px;
+}
+.task-bar {
+	background-color: #f8f9fd;
+	padding: 1rem 2rem;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+.task-name {
+	color: #cfe0f6;
+	background-color: #eaeef8;
+	border-radius: 16px;
+	padding: 0 15px;
+	line-height: 40px;
+	height: 40px;
+
+
+	&.active {
+		color: #fff;
+		background-color: #76a5e9;
+	}
+}
+.add-task-name {
+	color: #cee0f8;
+	height: 40px;
+	border: 3px solid #cee0f8;
+	border-radius: 18px;
+	padding: 0 14px;
+	font-size: 40px;
+	line-height: 30px;
+}
+.search-wrapper {
+	height: 40px;
+	background-color: #eff2f9;
+	border-radius: 16px;
+
+	input {
+		background-color: #0000;
+		outline: none;
+		height: 40px;
+		line-height: 40px;
+	}
+
+	img {
+		width: 26px;
+		height: 26px;
+		margin-right: 10px;
+	}
+}
+.task {
+	.task-prior {
+		color: #a0c0f4;
+		border: 2px solid #a0c0f4;
+		font-size: 13px;
+		border-radius: 6px;
+		padding: 0 10px;
+		margin: 0 10px 0 0;
+	}
+	.task-next-tag {
+		color: #333;
+		background-color: #eff2f9;
+		border: none;
+		border-radius: 6px;
+		padding: 0 6px;
+	}
+	.task-title {
+		color: #333;
+	}
+	.task-desc {
+		color: #7c7a7a;
+	}
+}
+.playlist {
+	background-color: #ffffff;
+}
+.playlist-scroll {
+	max-height: 300px;
+	overflow-y: auto;
+}
+.bottom-music-player {
+	background-color: #ffffff;
+}
+/* progress bar common style */
+.progress-bar {
+	position: absolute;
+	top: -5px;
+	width: 100%;
+	height: 5px;
+	box-sizing: border-box;
+	background-color: #e4e4e4;
+	box-shadow: inset 0 1px 3px 1px #b3b3b3;
+	margin-bottom: 10px;
+
+	.progress-inner-bar {
+		position: relative;
+		height: 5px;
+		width: 15px;
+		background-color: #8361d9;
+		border-radius: 10px;
+		transition: width 500ms linear;
+	}
+
+	.progress-inner-circle {
+		position: absolute;
+		right: 0;
+		top: -5px;
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background-color: #8361d9;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	header {
+		padding: 15px !important;
+
+		.TCtoggle {
+			> div {
+				height: 30px;
+				padding: 0;
+				font-size: 16px;
+				line-height: 30px;
+			}
+		}
+		.timer-wrapper {
+			background-color: transparent;
+			.timer {
+				color: #51b87c;
+				background-color: transparent;
+			}
+		}
+	}
+	.task-bar {
+		padding: 10px;
+		height: 3.5rem !important;
+
+		.task-name {
+			height: 35px;
+			line-height: 35px;
+		}
+
+		.search-wrapper {
+			display: none;
+		}
+		.add-task-name {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 30px;
+			height: 30px;
+			border-radius: 50%;
+			font-size: 22px;
+			color: #ffffff;
+			background-color: #cee0f8;
+			border: none;
+		}
+	}
+	.main-section {
+		height: calc(100% - 129px);
+	}
+	.panel-container {
+		.panel {
+			width: 20rem;
+			margin: 0 1rem;
+		}
+	}
+	.playlist {
+		width: 100%;
+		left: 0;
+		bottom: 70px !important;
+	}
+	.timer-stop {
+		position: fixed !important;
+		width: 100% !important;
+		top: 0 !important;
+		left: 0;
+	}
+	.content-list {
+		> div {
+			width: 90%;
+			margin: 0 auto;
+		}
+	}
+	.content-actions {
+		width: 50px;
+		height: 50px;
+		border-radius: 20px 0 0 20px !important;
+
+		.open-all-link, .add-new-resource {
+			display: none;
+		}
+	}
+	.add-resource {
+		width: 90% !important;
+
+		.px-4 {
+			max-height: 280px;
+			overflow-y: auto;
+		}
+	}
 }
