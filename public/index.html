@@ -83,181 +83,70 @@
 						<div class="font-bold mr-4 cursor-pointer deco2017-btn task-name">DECO2017</div>
 						<div class="font-bold cursor-pointer add-task-name">+</div>
 						<div class="ml-auto flex items-center search-wrapper">
-							<input type="search" class="p-3" />
-							<img src="./images/search.png" alt="" />
+							<input id="search-text" type="search" class="p-3" />
+							<img id="search-btn" src="./images/search.png" alt="" />
 						</div>
 					</div>
 					<div class="panel-container">
-						<div class="inline-flex flex-col mx-8 h-fit panel">
-							<h1 class="text-center text-2xl font-sans font-bold my-2 status">To Do</h1>
-
-							<div class="task-list">
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-									<div class="flex">
-										<div class="px-1 font-bold border-2 mx-1 task-prior">LOW</div>
-										<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-										<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-											<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-										</div>
-									</div>
-									<div>
-										<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-										<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-									</div>
-									<hr class="my-2" />
-									<div class="flex justify-between">
-										<p class="task-date font-bold">DUE 18 Apr 22</p>
-										<div class="p-2 rounded-lg task-period">2 Hr 45 Min</div>
-									</div>
-								</div>
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-									<div class="flex">
-										<div class="px-1 font-bold border-2 mx-1 task-prior">LOW</div>
-										<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-										<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-											<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-										</div>
-									</div>
-									<div>
-										<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-										<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-									</div>
-									<hr class="my-2" />
-									<div class="flex justify-between">
-										<p class="task-date font-bold">DUE 18 Apr 22</p>
-										<div class="rounded-lg task-period">2 Hr 45 Min</div>
-									</div>
-								</div>
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-									<div class="flex">
-										<div class="px-1 font-bold border-2 mx-1 task-prior">LOW</div>
-										<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-										<div class="bg-purple-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-											<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-										</div>
-									</div>
-									<div>
-										<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-										<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-									</div>
-									<hr class="my-2" />
-									<div class="flex justify-between">
-										<p class="task-date font-bold">DUE 18 Apr 22</p>
-										<div class="rounded-lg task-period">2 Hr 45 Min</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="h-12 text-white flex justify-center items-center w-full add-task add-task-purple">+ ADD TASK</div>
-						</div>
-						<div class="inline-flex flex-col mx-8 h-fit panel">
-							<h1 class="text-center text-2xl font-sans font-bold my-2">In Progress</h1>
-
-							<div class="task-list">
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-								<div class="flex">
-									<div class="px-1 border-2 mx-1 font-bold task-prior">LOW</div>
-									<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-									<div class="bg-orange-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-										<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-									</div>
-								</div>
-								<div>
-									<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-									<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-								</div>
-								<hr class="my-2" />
-								<div class="flex justify-between">
-									<p class="task-date font-bold">DUE 18 Apr 22</p>
-									<div class="rounded-lg task-period">2 Hr 45 Min</div>
-								</div>
-							</div>
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-									<div class="flex">
-										<div class="px-1 border-2 mx-1 font-bold task-prior">LOW</div>
-										<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-										<div class="bg-orange-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-											<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-										</div>
-									</div>
-									<div>
-										<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-										<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-									</div>
-									<hr class="my-2" />
-									<div class="flex justify-between">
-										<p class="task-date font-bold">DUE 18 Apr 22</p>
-										<div class="rounded-lg task-period">2 Hr 45 Min</div>
-									</div>
-								</div>
-							</div>
-
-							<div class="h-12 text-white flex justify-center items-center w-full add-task add-task-orange">+ ADD TASK</div>
-						</div>
-						<div class="inline-flex flex-col mx-8 bg-green-200 h-fit panel">
-							<h1 class="text-center text-2xl font-sans font-bold text-green-400 my-2">Done</h1>
-
-							<div class="task-list">
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-								<div class="flex">
-									<div class="px-1 border-2 mx-1 font-bold task-prior">LOW</div>
-									<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-									<div class="bg-green-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-										<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-									</div>
-								</div>
-								<div>
-									<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-									<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-								</div>
-								<hr class="my-2" />
-								<div class="flex justify-between">
-									<p class="task-date font-bold">DUE 18 Apr 22</p>
-									<div class="rounded-lg task-period">2 Hr 45 Min</div>
-								</div>
-							</div>
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-									<div class="flex">
-										<div class="px-1 border-2 mx-1 font-bold task-prior">LOW</div>
-										<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-										<div class="bg-green-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-											<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-										</div>
-									</div>
-									<div>
-										<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-										<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-									</div>
-									<hr class="my-2" />
-									<div class="flex justify-between">
-										<p class="task-date font-bold">DUE 18 Apr 22</p>
-										<div class="rounded-lg task-period">2 Hr 45 Min</div>
-									</div>
-								</div>
-								<div class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
-									<div class="flex">
-										<div class="px-1 border-2 mx-1 font-bold task-prior">LOW</div>
-										<div class="px-1 border-2 mx-1 font-bold task-next-tag">Iteration</div>
-										<div class="bg-green-300 ml-auto rounded-lg text-sm p-1 task-edit hidden">
-											<svg t="1654169499790" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="21827"><path d="M801.4 437.4L586.2 223.6l81.3-80.8 215.1 214-81.2 80.6zM356.2 880.2l-215.4-214 0.3 0.1 390-387.9 215.2 213.9-390.1 387.9zM140 881.4V775l106.9 106.2-106.9 0.2zM938 302L722.7 88c-14.4-14.9-34.4-23.1-55.2-22.6-20.6 0.1-40.4 8.3-55 22.8L85.9 611.5c-17.3 17.3-25.4 41.7-21.8 65.8-0.9 3.3-2.1 6.4-2.1 10v194.1c0 42.5 34.8 77.1 77.6 77.1h195.3c3.5 0 6.7-1.1 10-2 3.6 0.5 7.3 1 10.9 1 20 0 40.1-7.6 55.4-22.8l526.5-523.3c30.4-30.1 30.6-79.1 0.3-109.4z m0 0" p-id="21828"></path></svg>
-										</div>
-									</div>
-									<div>
-										<h1 class="font-bold text-xl mt-3 task-title">Flow Diagram</h1>
-										<p class="task-desc">Lorem ipsum dolor sit amet, consec.</p>
-									</div>
-									<hr class="my-2" />
-									<div class="flex justify-between">
-										<p class="task-date font-bold">DUE 18 Apr 22</p>
-										<div class="rounded-lg task-period">2 Hr 45 Min</div>
-									</div>
-								</div>
-							</div>
-							<div class="h-12 bg-green-400 text-white flex justify-center items-center w-full add-task">+ ADD TASK</div>
-						</div>
-						<div class="inline-flex flex-col mx-8 bg-purple-200 h-fit panel rounded-2xl">
+						<div id="panel-content" class="flex"></div>
+						<div id="add_column_wrapper" class="inline-flex flex-col mx-8 bg-purple-200 h-fit panel rounded-2xl">
 							<div class="p-3 rounded-2xl text-center font-bold text-xl cursor-pointer add-column">
 								+ ADD COLUMN
+							</div>
+							<div class="add-column-panel">
+								<div class="font-bold">Enter new column title</div>
+								<textarea id="column_title"></textarea>
+								<div id="add_colum_title" class="cursor-pointer">+ ADD YOUR NEW TASK</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center task-add-panel hidden">
+						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
+
+						<div class="bg-white z-20 opacity-100 p-8 rounded-xl relative">
+							<div class="flex justify-center items-center mb-8">
+								<h1 class="ml-auto font-bold text-xl">Add Task</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 task-add-panel-close cursor-pointer">
+									<img src="./images/close.png" width="20" height="20">
+								</p>
+							</div>
+							<div class="flex mb-10">
+								<div class="flex flex-col">
+									<div class="mr-8 input-group mb-8">
+										<input id="add_title" type="text" class="w-80 block add-title" placeholder="Title" />
+										<input id="add_description" type="text" class="w-80 block add-desc" placeholder="Description" />
+										<input id="add_subject" type="text" class="w-80 block add-subject" placeholder="Subject" />
+									</div>
+									<div class="mr-8 input-group">
+										<select id="add_status" name="" class="block w-80 add-prior">
+											<option value="">Proior Rating</option>
+											<option value="HIGH">HIGH</option>
+											<option value="MIDDLE">MIDDLE</option>
+											<option value="LOW">LOW</option>
+										</select>
+									</div>
+								</div>
+								<div class="flex flex-col">
+									<div class="input-group mb-4">
+										<input id="add_due_date" type="date" class="w-80 block" style="padding: 0" />
+									</div>
+									<div class="input-group mb-4">
+										<input id="add_duration" type="time" class="w-80 block" style="padding: 0" />
+									</div>
+									<div class="input-group mb-4">
+										<select name="" class="block w-80 add-status">
+											<option value="">Status</option>
+											<option value="To Do">To Do</option>
+											<option value="In Progress">In Progress</option>
+											<option value="Done">Done</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-xl">
+								<button id="add_cancel" class="flex-1 rounded-bl-xl font-bold text-lg cancel-add">Cancel</button>
+								<button id="add_save" class="flex-1 rounded-br-xl font-bold text-lg save-task">Save</button>
 							</div>
 						</div>
 					</div>
@@ -265,90 +154,97 @@
 					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center task-edit-panel hidden">
 						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
 
-						<div class="bg-white z-20 opacity-100 p-8 rounded-3xl relative">
+						<div class="bg-white z-20 opacity-100 p-8 rounded-xl relative">
 							<div class="flex justify-center items-center mb-8">
-								<h1 class="ml-auto font-bold text-xl">Add/Edit Task</h1>
-								<p class="ml-auto font-bold text-xl text-purple-400 task-edit-panel-close cursor-pointer">X</p>
+								<h1 class="ml-auto font-bold text-xl">Edit Task</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 task-edit-panel-close cursor-pointer">
+									<img src="./images/close.png" width="20" height="20">
+								</p>
 							</div>
 							<div class="flex mb-10">
-								<div class="mr-8 ml-4">
-									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add-title" placeholder="Title" />
-									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add-desc" placeholder="Description" />
-									<input type="text" class="p-4 bg-gray-200 rounded-xl w-80 mb-4 block add-subject" placeholder="Subject" />
+								<div class="flex flex-col">
+									<div class="mr-8 input-group mb-8">
+										<input id="edit_title" type="text" class="w-80 block add-title" placeholder="Title" />
+										<input id="edit_description" type="text" class="w-80 block add-desc" placeholder="Description" />
+										<input id="edit_subject" type="text" class="w-80 block add-subject" placeholder="Subject" />
+									</div>
+									<div class="mr-8 input-group">
+										<select id="edit_status" name="" class="block w-80 add-prior">
+											<option value="">Proior Rating</option>
+											<option value="HIGH">HIGH</option>
+											<option value="MIDDLE">MIDDLE</option>
+											<option value="LOW">LOW</option>
+										</select>
+									</div>
 								</div>
-								<div>
-									<input type="datetime-local" class="p-4 bg-gray-200 rounded-xl w-80 block mb-4" value="2022-06-12T19:30" />
-									<select name="" id="" class="p-4 bg-gray-200 rounded-xl block w-80 mb-4 text-gray-400 add-status">
-										<option value="Status">Status</option>
-										<option value="To Do">To Do</option>
-										<option value="In Progress">In Progress</option>
-										<option value="Done">Done</option>
-									</select>
-									<select name="" id="" class="p-4 bg-gray-200 rounded-xl block w-80 text-gray-400 add-prior">
-										<option value="Status">Proior Rating</option>
-										<option value="HIGH">HIGH</option>
-										<option value="MIDDLE">MIDDLE</option>
-										<option value="LOW">LOW</option>
-									</select>
+								<div class="flex flex-col">
+									<div class="input-group mb-4">
+										<input id="edit_due_date" type="date" class="w-80 block" style="padding: 0" />
+									</div>
+									<div class="input-group mb-4">
+										<input id="edit_duration" type="time" class="w-80 block" style="padding: 0" />
+									</div>
+									<div class="input-group mb-4">
+										<select name="" class="block w-80 add-status">
+											<option value="">Status</option>
+											<option value="To Do">To Do</option>
+											<option value="In Progress">In Progress</option>
+											<option value="Done">Done</option>
+										</select>
+									</div>
 								</div>
 							</div>
-							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-3xl">
-								<button class="flex-1 bg-gray-400 rounded-bl-3xl font-bold text-lg text-white cancel-add">Cancel</button>
-								<button class="flex-1 bg-purple-400 rounded-br-3xl font-bold text-lg text-white save-task">Save</button>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-xl">
+								<button id="edit_delete" class="flex-1 rounded-bl-xl font-bold text-lg cancel-delete">DELETE</button>
+								<button id="edit_save" class="flex-1 rounded-br-xl font-bold text-lg save-task">Save</button>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="w-full content hidden">
-					<div class="flex w-full flex-wrap content-list">
-						<div class="shadow-lg rounded-xl w-80 px-4 py-2 m-2">
-							<div class="flex items-center justify-around">
-								<p>🔗</p>
-								<a href="http://www.baidu.com" class="links" target="_blank">http://www.baidu.com</a>
-								<p class="edit-resource cursor-pointer">✏</p>
-							</div>
-							<hr class="bg-purple-400 h-1 w-full my-2" />
-							<h1 class="font-bold text-xl">Title of article</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea tempora, rem totam autem</p>
-						</div>
-						<div class="shadow-lg rounded-xl w-80 px-4 py-2 m-2">
-							<div class="flex items-center justify-around">
-								<p>🔗</p>
-								<a href="http://www.google.com" class="links" target="_blank">http://www.google.com</a>
-								<p class="edit-resource cursor-pointer">✏</p>
-							</div>
-							<hr class="bg-purple-400 h-1 w-full my-2" />
-							<h1 class="font-bold text-xl">Title of article</h1>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea tempora, rem totam autem</p>
+					<div class="flex w-full h-20 mb-4 task-bar">
+						<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>
+						<div class="font-bold mr-4 cursor-pointer deco2020-btn task-name">DECO2020</div>
+						<div class="font-bold mr-4 cursor-pointer deco2017-btn task-name">DECO2017</div>
+						<div class="font-bold cursor-pointer add-task-name">+</div>
+						<div class="ml-auto flex items-center search-wrapper">
+							<input id="content-search-text" type="search" class="p-3" />
+							<img id="content-search-btn" src="./images/search.png" alt="" />
 						</div>
 					</div>
+					<div id="content-list" class="flex w-full flex-wrap content-list">
+					</div>
 					<div class="absolute bottom-32 right-0">
-						<div class="flex items-center p-3 rounded-2xl bg-green-400 cursor-pointer mb-4 content-actions open-all-link-wrapper">
-							<img src="./images/link.png" class="w-6 h-6 mr-2 link-pic" alt="" />
-							<button class="text-white font-bold text-xl open-all-link">OPEN ALL RESOURCE</button>
+						<div class="flex items-center p-3 cursor-pointer mb-4 content-actions open-all-link-wrapper">
+							<img src="./images/link.png" class="w-4 h-4 mr-4 link-pic" alt="" />
+							<button class="text-white font-bold text-md open-all-link">OPEN ALL RESOURCE</button>
 						</div>
-						<div class="flex items-center p-3 rounded-2xl bg-purple-400 cursor-pointer content-actions add-new-resource-wrapper">
-							<img src="./images/plus.png" class="w-6 h-6 mr-2 link-pic" alt="" />
-							<button class="text-white font-bold text-xl add-new-resource">ADD NEW RESOURCE</button>
+						<div class="flex items-center p-3 cursor-pointer content-actions add-new-resource-wrapper">
+							<img src="./images/plus.png" class="w-4 h-4 mr-4 link-pic" alt="" />
+							<button class="text-white font-bold text-md add-new-resource">ADD NEW RESOURCE</button>
 						</div>
 					</div>
 					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center resource-edit-panel hidden">
 						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
 
-						<div class="w-2/5 h-3/6 bg-white z-20 opacity-100 p-8 rounded-3xl relative add-resource">
+						<div class="w-2/5 bg-white z-20 opacity-100 p-8 rounded-xl relative add-resource">
 							<div class="flex justify-center items-center mb-8">
-								<h1 class="ml-auto font-bold text-xl">Add/Edit Resource</h1>
-								<p class="ml-auto font-bold text-xl text-purple-400 resource-edit-panel-close cursor-pointer">X</p>
+								<h1 class="ml-auto font-bold text-xl">Add Resource</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 resource-edit-panel-close cursor-pointer">
+									<img src="./images/close.png" width="20" height="20">
+								</p>
 							</div>
-							<div class="px-4">
-								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-url" placeholder="URL" />
-								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-title" placeholder="Title" />
-								<input type="text" class="p-4 bg-gray-200 rounded-xl w-full mb-4 block res-add-subject" placeholder="Subject" />
-								<textarea name="" id="" class="w-full h-24 bg-gray-200 rounded-xl p-4" placeholder="Add the Description here..."></textarea>
+							<div class="px-4 input-group mb-4">
+								<input id="add_content_url" type="text" class="p-4 w-full mb-4 block res-add-url" placeholder="URL" />
+								<input id="add_content_title" type="text" class="p-4 w-full mb-4 block res-add-title" placeholder="Title" />
+								<input id="add_content_subject" type="text" class="p-4 w-full mb-4 block res-add-subject" placeholder="Subject" />
 							</div>
-							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-3xl">
-								<button class="flex-1 bg-gray-400 rounded-bl-3xl font-bold text-lg text-white cancel-add">Cancel</button>
-								<button class="flex-1 bg-purple-400 rounded-br-3xl font-bold text-lg text-white save-task">Save</button>
+							<div class="px-4 input-group mb-10">
+								<textarea id="add_content_desc" class="w-full h-24" style="background-color: transparent;outline: none;resize: none" placeholder="Add the Description here..."></textarea>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-xl">
+								<button id="content_add_cancel" class="flex-1 rounded-bl-xl font-bold text-lg text-white cancel-add">Cancel</button>
+								<button id="content_add_save" class="flex-1 rounded-br-xl font-bold text-lg text-white save-task">Save</button>
 							</div>
 						</div>
 					</div>
@@ -372,6 +268,12 @@
 					<img src="./images/play.png" class="w-6 h-6 sm:w-10 sm:h-10 cursor-pointer" id="play-audio" alt="" />
 					<img src="./images/pause.png" class="w-6 h-6 sm:w-10 sm:h-10 cursor-pointer hidden" id="pause-audio" alt="" />
 					<img src="./images/next.png" class="w-6 h-6 hidden sm:block ml-8 cursor-pointer next-audio" alt="" />
+				</div>
+				<div class="ml-4" id="loop-btn">
+					<img src="./images/loop.png" class="w-6 h-6 cursor-pointer" alt="" />
+				</div>
+				<div class="ml-4 hidden" id="random-btn">
+					<img src="./images/random.png" class="w-6 h-6 cursor-pointer" alt="" />
 				</div>
 				<div class="ml-4 mr-4">
 					<img src="./images/list.png" class="w-6 h-6 cursor-pointer list-btn" alt="" />
