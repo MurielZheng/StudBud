@@ -3,6 +3,11 @@ html, body {
 	height: 100%;
 }
 
+@font-face {
+	font-family: 'Rubik';
+	src: url('../Rubik-VariableFont_wght.ttf');
+}
+
 .panel-container {
 	margin-bottom: 4rem;
 	display: flex;
@@ -13,6 +18,7 @@ div,body {
 	//-ms-overflow-style: none; /* Edge, Internet Explorer */
 	//scrollbar-width: none; /* Firefox */
 	// overflow-y: scroll;
+	font-family: Rubik, serif;
 }
 
 // hides scrollbars while allowing to scroll
