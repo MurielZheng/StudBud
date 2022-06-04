@@ -13,6 +13,7 @@ html, body {
 	display: flex;
 	overflow-x: scroll;
 	width: 100%;
+	height: calc(100% - 100px);
 }
 div,body {
 	//-ms-overflow-style: none; /* Edge, Internet Explorer */
@@ -149,6 +150,7 @@ div,body {
 .main-section {
 	height: calc(100% - 197px);
 	overflow-x: auto;
+	overflow-y: hidden;
 }
 .add-task {
 	position: absolute;
@@ -364,7 +366,13 @@ div,body {
 		left: 0;
 		bottom: 70px !important;
 	}
-	.timer-stop {
+	.timer-time-nav-off {
+		display: none;
+	}
+	.timer-time-nav {
+		display: none;
+	}
+	.timer-stop, .timer-start {
 		position: fixed !important;
 		width: 100% !important;
 		top: 0 !important;
@@ -392,6 +400,35 @@ div,body {
 			max-height: 280px;
 			overflow-y: auto;
 		}
+	}
+	.modal-wrapper {
+		width: 90%;
+	}
+	.modal-content {
+		flex-direction: column;
+
+		.input-group {
+			width: 100%;
+
+			> input {
+				width: 100%;
+			}
+		}
+
+		> div + div {
+			margin-top: 1rem;
+		}
+	}
+	.task-edit, .edit-resource {
+		display: block !important;
+	}
+	.content-list {
+		margin-bottom: 50px;
+		height: calc(100% - 100px);
+		overflow-y: auto;
+	}
+	.content-item {
+		margin-bottom: 10px !important;
 	}
 }
 .add-column-panel {

@@ -70,18 +70,20 @@
 							</div>
 						</div>
 						<div class="stopwatch hidden">
-							<div class="text-5xl flex justify-center items-center my-8 sw">00:00</div>
+							<div class="text-5xl flex justify-center items-center my-8 sw">00:00:00</div>
 							<div class="flex justify-between px-6 items-center">
 								<div class="rounded-lg p-2 bg-gray-400 text-white cursor-pointer cancel-sw">RESET</div>
 
 								<div class="rounded-lg p-2 bg-green-500 text-white start-sw cursor-pointer">START</div>
+
+								<div class="rounded-lg p-2 bg-green-500 text-white pause-sw cursor-pointer hidden">PAUSE</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</header>
 			<div class="w-full deco2014 main-section">
-				<div class="w-full task">
+				<div class="w-full h-full task">
 					<div class="flex w-full h-20 mb-4 task-bar">
 						<div id="course_list" class="flex">
 							<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>
@@ -114,14 +116,14 @@
 					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center task-add-panel hidden">
 						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
 
-						<div class="bg-white z-20 opacity-100 p-8 rounded-xl relative">
+						<div class="bg-white z-20 opacity-100 p-8 rounded-xl relative modal-wrapper">
 							<div class="flex justify-center items-center mb-8">
 								<h1 class="ml-auto font-bold text-xl">Add Task</h1>
 								<p class="ml-auto font-bold text-xl text-purple-400 task-add-panel-close cursor-pointer">
 									<img src="./images/close.png" width="20" height="20">
 								</p>
 							</div>
-							<div class="flex mb-10">
+							<div class="flex mb-10 modal-content">
 								<div class="flex flex-col">
 									<div class="mr-8 input-group mb-8">
 										<input id="add_title" type="text" class="w-80 block add-title" placeholder="Title" />
@@ -164,14 +166,14 @@
 					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center task-edit-panel hidden">
 						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
 
-						<div class="bg-white z-20 opacity-100 p-8 rounded-xl relative">
+						<div class="bg-white z-20 opacity-100 p-8 rounded-xl relative modal-wrapper">
 							<div class="flex justify-center items-center mb-8">
 								<h1 class="ml-auto font-bold text-xl">Edit Task</h1>
 								<p class="ml-auto font-bold text-xl text-purple-400 task-edit-panel-close cursor-pointer">
 									<img src="./images/close.png" width="20" height="20">
 								</p>
 							</div>
-							<div class="flex mb-10">
+							<div class="flex mb-10 modal-content">
 								<div class="flex flex-col">
 									<div class="mr-8 input-group mb-8">
 										<input id="edit_title" type="text" class="w-80 block add-title" placeholder="Title" />
@@ -211,7 +213,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="w-full content hidden">
+				<div class="w-full h-full content hidden">
 					<div class="flex w-full h-20 mb-4 task-bar">
 						<div id="content_list" class="flex">
 							<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>

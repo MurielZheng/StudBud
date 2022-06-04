@@ -6,7 +6,11 @@ let ifPause = false;
 let player;
 
 // 番茄时钟
-$(".start-timer").click(function () {
+$(".start-timer").click(function (e) {
+	e.stopPropagation();
+	if (swtimer) {
+		return;
+	}
 	$(".timer-stop").addClass("hidden");
 	$(".timer-start").removeClass("hidden");
 	$('.timer-time-nav').removeClass('hidden');
@@ -25,6 +29,7 @@ function countdown() {
 // 结束番茄时钟
 $(".end-timer").click(function () {
 	clearInterval(timer);
+	timer = undefined;
     $(".curr-time").text('25:00');
     $(".timer-stop").removeClass("hidden");
 	$(".timer-start").addClass("hidden");
@@ -32,7 +37,8 @@ $(".end-timer").click(function () {
     $('.timer-time-nav-off').removeClass('hidden');
 });
 // 取消番茄时钟
-$('.cancel-timer').click(function() {
+$('.cancel-timer').click(function(e) {
+	e.stopPropagation();
     $('.timer-stop').addClass('hidden');
 })
 // 暂停时钟
@@ -182,39 +188,69 @@ $('.swap-watch').click(function(e) {
         $('.sw-btn').removeClass('bg-white')
         $('.pomodoro-btn').addClass('bg-white');
 				$('#timer_type').text('POMODORO');
+	    $('#timer_time').text('25:00');
     } else {
         $('.pomodoro').addClass('hidden');
         $('.stopwatch').removeClass('hidden');
         $('.sw-btn').addClass('bg-white')
         $('.pomodoro-btn').removeClass('bg-white');
 	      $('#timer_type').text('STOPWATCH');
+	      $('#timer_time').text('00:00:00');
     }
 })
 let swDate;
+let curStartTime = 0;
+let swStopTime = 0;
 // 开始秒表
 $('.start-sw').click(function(e) {
 	e.stopPropagation();
+	if (timer) {
+		return;
+	}
+	if (swStopTime === 0) {
+		curStartTime = Date.now();
+	}
 	swDate = Date.now();
 
   swtimer = setInterval(() => {
-    const curDate = Date.now();
-		let seconds = Math.floor((curDate - swDate) / 1000);
-		let millisecond = (curDate - swDate) % 1000;
+    const curDate = Date.now() - swDate + swStopTime;
+	  let minutes = Math.floor(curDate / 60000);
+		let seconds = Math.floor((curDate - minutes * 60000) / 1000);
+		let millisecond = Math.floor((curDate - minutes * 60000 - seconds * 1000) / 10);
 
+	  minutes = minutes >= 10 ? minutes : "0" + minutes;
 	  seconds = seconds >= 10 ? seconds : "0" + seconds;
 	  millisecond = millisecond >= 10 ? millisecond : "0" + millisecond;
 
-		$(".sw").text(seconds + ":" + String(millisecond).slice(0, 2));
-      $('#timer_time').text(seconds + ":" + String(millisecond).slice(0, 2));
+		$(".sw").text(minutes + ":" + seconds + ":" + String(millisecond).slice(0, 2));
+		$('#timer_time').text(minutes + ":" + seconds + ":" + String(millisecond).slice(0, 2));
   }, 50);
+
+	$(this).addClass('hidden');
+	$('.pause-sw').removeClass('hidden');
+	$('.timer-time-nav').removeClass('hidden');
+	$('.timer-time-nav-off').addClass('hidden');
 })
+
+$('.pause-sw').click(function(e) {
+	e.stopPropagation();
+	swStopTime = Date.now() - curStartTime;
+	clearInterval(swtimer);
+	swtimer = undefined;
+	$(this).addClass('hidden');
+	$('.start-sw').removeClass('hidden');
+})
+
 // 取消秒表
 $('.cancel-sw').click(function(e) {
 	e.stopPropagation();
+	curStartTime = 0;
+	swStopTime = 0;
     sw = 0;
     $(".sw").text('00:00');
 	$('#timer_time').text('00:00');
     clearInterval(swtimer);
+	swtimer = undefined;
 })
 // 打开播放列表弹窗
 $(".list-btn").click(function () {
@@ -425,7 +461,7 @@ function renderTask() {
 		col.taskList.forEach((item, index) => {
 			if (filterText === '' || (item.title.indexOf(filterText) >=0 || item.description.indexOf(filterText) >=0)) {
 				taskListHtml += `
-				<div id="${Date.now() + index}" draggable="true" class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task">
+				<div id="${Date.now() + index}" draggable="true" class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task task-item">
 					<div class="flex">
 						<div class="px-1 font-bold border-2 mx-1 task-prior task-prior-${item.status}">${item.status.toUpperCase()}</div>
 						<div class="px-1 border-2 mx-1 font-bold task-next-tag">${item.subject}</div>
@@ -470,7 +506,7 @@ function renderTask() {
 	});
 
 	// 鼠标悬浮时显示编辑按钮
-	$('.task').hover(function() {
+	$('.task-item').hover(function() {
 		$('.task-edit',this).removeClass('hidden');
 	},function() {
 		$('.task-edit',this).addClass('hidden');
