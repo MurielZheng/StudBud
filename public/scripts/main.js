@@ -1,22 +1,31 @@
 let time = 1500;
-let timer;
-let sw = 0;
-let swtimer;
-let ifPause = false;
-let player;
+let timer; // pomodoro time interval
+let sw = 0;  // stop watch time
+let swtimer; // stop watch time interval
+let ifPause = false; // pomodoro stop flag
+let player; // music player (audio tag)
 
-// 番茄时钟
+// pomodoro start button click event
 $(".start-timer").click(function (e) {
 	e.stopPropagation();
 	if (swtimer) {
 		return;
 	}
+	$('#timer_type').text('POMODORO');
 	$(".timer-stop").addClass("hidden");
 	$(".timer-start").removeClass("hidden");
 	$('.timer-time-nav').removeClass('hidden');
 	$('.timer-time-nav-off').addClass('hidden');
+
+	// start call countdown every 1 seconds
 	timer = setInterval(countdown, 1000);
 });
+
+$('.timer-start').click(function(e) {
+	e.stopPropagation();
+});
+
+// calculate pomodoro time and show
 function countdown() {
 	if (!ifPause) {
 		time--;
@@ -26,8 +35,10 @@ function countdown() {
 		$('#timer_time').text(min + ":" + sec);
 	}
 }
-// 结束番茄时钟
-$(".end-timer").click(function () {
+// pomodoro end button click event
+$(".end-timer").click(function (e) {
+	e.stopPropagation();
+	// cancel interval timer
 	clearInterval(timer);
 	timer = undefined;
     $(".curr-time").text('25:00');
@@ -36,40 +47,56 @@ $(".end-timer").click(function () {
 	$('.timer-time-nav').addClass('hidden');
     $('.timer-time-nav-off').removeClass('hidden');
 });
-// 取消番茄时钟
+// pomodoro cancel button click event, hide pomodoro panel
 $('.cancel-timer').click(function(e) {
 	e.stopPropagation();
     $('.timer-stop').addClass('hidden');
 })
-// 暂停时钟
-$(".pause-timer").click(function () {
+// pomodoro stop button click event
+$(".pause-timer").click(function (e) {
+	e.stopPropagation()
     if (ifPause) {
         ifPause = false;
     } else {
         ifPause = true;
     }
 });
-// 增加时间
-$('.add-five').click(function() {
+// add pomodoro time
+$('.add-five').click(function(e) {
+	e.stopPropagation();
     time += 300;
 })
-$('.add-ten').click(function() {
+$('.add-ten').click(function(e) {
+	e.stopPropagation();
     time += 600;
 })
-$('.add-fifteen').click(function() {
+$('.add-fifteen').click(function(e) {
+	e.stopPropagation();
     time += 900;
 })
 
+// show/hide the timer panel when click
 $(".timer-wrapper").click(function () {
-	if ($(".timer-stop").hasClass("hidden")) {
-		$(".timer-stop").removeClass("hidden");
+	if (timer) {
+		if ($(".timer-start").hasClass("hidden")) {
+			$(".timer-start").removeClass("hidden");
+		} else {
+			$(".timer-start").addClass("hidden");
+		}
 	} else {
-		$(".timer-stop").addClass("hidden");
+		if ($(".timer-stop").hasClass("hidden")) {
+			$(".timer-stop").removeClass("hidden");
+		} else {
+			$(".timer-stop").addClass("hidden");
+		}
 	}
 });
 
+// current play music index, currentMusicIndex between 1 and 5
 let currentMusicIndex = 1;
 const musics = $('.playlist-scroll > div');
+
+// listen timeupdate event and update music play progress
 function playProgress() {
 	player.addEventListener("timeupdate", function() {
 		const currentTime = player.currentTime;
@@ -79,32 +106,43 @@ function playProgress() {
 	});
 }
 
-// 播放音乐
+// play music button click event
 $('#play-audio').click(function() {
+	  // get audio
     player = document.getElementById('audio-player' + currentMusicIndex);
     player.play();
+		// add timeupdate event
 		player.removeEventListener("timeupdate", playProgress);
 		player.addEventListener("timeupdate", playProgress);
 
     $('#play-audio').addClass('hidden');
     $('#pause-audio').removeClass('hidden');
+		// add play end event
 		player.removeEventListener('ended', musicPlayEnd);
 		player.addEventListener('ended', musicPlayEnd);
+
+		// change play list style
 	changePlayListActive();
 })
-// 暂停音乐
+
+// stop music button click event
 $('#pause-audio').click(function() {
+		// call music pause method
     player.pause();
     $('#play-audio').removeClass('hidden');
     $('#pause-audio').addClass('hidden');
 	changePlayListActive();
 })
-// 下一首音乐
+
+// next music button click event
 $('.next-audio').click(function() {
 	if (currentMusicIndex < 5) {
+		// stop current play music first
 		player = document.getElementById('audio-player' + currentMusicIndex);
 		player.pause();
 		player.currentTime = 0;
+
+		// play next music next
 		currentMusicIndex++;
 		player = document.getElementById('audio-player' + currentMusicIndex);
 		player.play();
@@ -116,19 +154,23 @@ $('.next-audio').click(function() {
 		player.addEventListener('ended', musicPlayEnd);
 		changePlayListActive();
 
+		// update music information
 		const musicItem = musics[currentMusicIndex - 1];
 		$('.song-pic').attr('src', $(musicItem).find('.music-img').attr('src'));
 		$('.song-name').text($(musicItem).find('.music-name').text())
 		$('.song-author').text($(musicItem).find('.music-artist').text())
 	}
 })
-// 上一首音乐
+
+// prev music button clic event
 $('.last-audio').click(function() {
 	if (currentMusicIndex > 1) {
+		// stop current play music first
 		player = document.getElementById('audio-player' + currentMusicIndex);
 		player.pause();
 		player.currentTime = 0;
 
+		// play prev music next
 		currentMusicIndex--;
 		player = document.getElementById('audio-player' + currentMusicIndex);
 		player.play();
@@ -140,6 +182,7 @@ $('.last-audio').click(function() {
 		player.addEventListener('ended', musicPlayEnd);
 		changePlayListActive();
 
+		// update music information
 		const musicItem = musics[currentMusicIndex - 1];
 		$('.song-pic').attr('src', $(musicItem).find('.music-img').attr('src'));
 		$('.song-name').text($(musicItem).find('.music-name').text())
@@ -147,11 +190,13 @@ $('.last-audio').click(function() {
 	}
 })
 
+// change current music style in music list
 function changePlayListActive() {
 	$('.playlist-scroll > div').removeClass('active');
 	$('.playlist-scroll > div').eq(currentMusicIndex - 1).addClass('active');
 }
 
+// music list item play button click event
 $('.music-item-play').click(function(e) {
 	const item = $(e.currentTarget).parent('.items-center');
 	const index = $(".playlist-scroll > div").index(item);
@@ -167,7 +212,9 @@ $('.music-item-play').click(function(e) {
 	$('#play-audio').click();
 })
 
+// music play end event
 function musicPlayEnd() {
+	// change currentMusicIndex by mode, and play
 	if (loop) {
 		if (currentMusicIndex === 5) {
 			currentMusicIndex = 0;
@@ -179,7 +226,7 @@ function musicPlayEnd() {
 	}
 }
 
-// 切换番茄时钟与秒表
+// switch pomodoro panel or stop watch panel
 $('.swap-watch').click(function(e) {
 		e.stopPropagation();
     if ($('.pomodoro').hasClass('hidden')) {
@@ -187,32 +234,34 @@ $('.swap-watch').click(function(e) {
         $('.stopwatch').addClass('hidden');
         $('.sw-btn').removeClass('bg-white')
         $('.pomodoro-btn').addClass('bg-white');
-				$('#timer_type').text('POMODORO');
-	    $('#timer_time').text('25:00');
     } else {
         $('.pomodoro').addClass('hidden');
         $('.stopwatch').removeClass('hidden');
         $('.sw-btn').addClass('bg-white')
         $('.pomodoro-btn').removeClass('bg-white');
-	      $('#timer_type').text('STOPWATCH');
-	      $('#timer_time').text('00:00:00');
     }
 })
-let swDate;
-let curStartTime = 0;
-let swStopTime = 0;
-// 开始秒表
+
+
+let swDate; // stop watch start time
+let curStartTime = 0; // current stop watch start time
+let swStopTime = 0; // stop watch stop time
+
+// stop watch start button click event
 $('.start-sw').click(function(e) {
 	e.stopPropagation();
+	// if pomodoro timer running, do nothing
 	if (timer) {
 		return;
 	}
+	$('#timer_type').text('STOPWATCH');
 	if (swStopTime === 0) {
 		curStartTime = Date.now();
 	}
 	swDate = Date.now();
 
   swtimer = setInterval(() => {
+		// calculate time and show time string
     const curDate = Date.now() - swDate + swStopTime;
 	  let minutes = Math.floor(curDate / 60000);
 		let seconds = Math.floor((curDate - minutes * 60000) / 1000);
@@ -232,6 +281,7 @@ $('.start-sw').click(function(e) {
 	$('.timer-time-nav-off').addClass('hidden');
 })
 
+// stop watch pause button click event, remember stop time
 $('.pause-sw').click(function(e) {
 	e.stopPropagation();
 	swStopTime = Date.now() - curStartTime;
@@ -241,22 +291,28 @@ $('.pause-sw').click(function(e) {
 	$('.start-sw').removeClass('hidden');
 })
 
-// 取消秒表
+// stop watch reset button click event, reset all stop watch status
 $('.cancel-sw').click(function(e) {
 	e.stopPropagation();
 	curStartTime = 0;
 	swStopTime = 0;
     sw = 0;
-    $(".sw").text('00:00');
-	$('#timer_time').text('00:00');
+    $(".sw").text('00:00:00');
+	$('#timer_time').text('00:00:00');
     clearInterval(swtimer);
 	swtimer = undefined;
+	$('.timer-time-nav').addClass('hidden');
+	$('.timer-time-nav-off').removeClass('hidden');
+	$('.pause-sw').addClass('hidden');
+	$('.start-sw').removeClass('hidden');
 })
-// 打开播放列表弹窗
+
+// open music play list panel button click event
 $(".list-btn").click(function () {
 	$(".playlist").toggle();
 });
-// 切换资源和看板
+
+// switch task and content
 $(".TCtoggle").click(function () {
     if ($('.task-btn').hasClass('bg-white')) {
         $('.task-btn').removeClass('bg-white');
@@ -268,14 +324,15 @@ $(".TCtoggle").click(function () {
 	$(".task").toggle();
 	$(".content").toggle();
 });
-// 关闭编辑资源弹窗
+// close add task modal
 $(".task-add-panel-close").click(function () {
 	$(".task-add-panel").addClass("hidden");
 });
+// close edit task modal
 $(".task-edit-panel-close").click(function () {
 	$(".task-edit-panel").addClass("hidden");
 });
-// 打开所有资源链接
+// when click open all link button, it will open all url by browser in new tab
 $('.open-all-link').click(function() {
     $('.links').each(function(i) {
         window.open($(this).text(), '_blank').focus();
@@ -286,36 +343,36 @@ $('.open-all-link-wrapper').click(function() {
 		window.open($(this).text(), '_blank').focus();
 	})
 })
-// 打开添加资源弹窗
+// open add content modal
 $('.add-new-resource').click(function() {
     $('.resource-edit-panel').removeClass('hidden')
 })
-// 打开添加资源弹窗
+// open add resource modal
 $('.add-new-resource-wrapper').click(function() {
 	$('.resource-edit-panel').removeClass('hidden')
 })
-// 打开编辑资源弹窗
+// open edit content modal
 $('.edit-resource').click(function() {
     $('.resource-edit-panel').removeClass('hidden')
 })
-// 关闭编辑资源弹窗
+// close edit content modal
 $('.resource-edit-panel-close').click(function() {
     $('.resource-edit-panel').addClass('hidden')
 })
-
-// 关闭编辑资源弹窗
+// close add content modal
 $('.resource-add-panel-close').click(function() {
 	$('.resource-add-panel').addClass('hidden')
 })
-
-
+// add column button click event, it will show add panel
 $('.add-column').click(function() {
 	$('.add-column').hide()
 	$('.add-column-panel').show();
 })
-
+// add column confirm button click
 $('#add_colum_title').click(function() {
 	const columnTitle = $('#column_title').val();
+
+	// get current task, and push new column
 	const task = tasks[curTaskIndex];
 	task.columns.push({
 		columnName: columnTitle,
@@ -329,10 +386,11 @@ $('#add_colum_title').click(function() {
 	$('.add-column-panel').hide();
 });
 
-let curTaskIndex = 0;
+let curTaskIndex = 0; // current task index
 let curTask;
-let curEditTask;
+let curEditTask; // current task(edit use)
 
+// tasks data
 const tasks = [
 	{
 		courseName: "DECO2014",
@@ -429,12 +487,14 @@ const tasks = [
 ]
 
 const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+// format date(dd (Mon) yyyy)
 function formatDueDate(date) {
 	const day = date.getDate();
 	const month = monthNames[date.getMonth()];
 	const year = String(date.getFullYear()).slice(2,4);
 	return `DUE ${day} ${month} ${year}`;
 }
+// format duration((hh) Hr (mm) Min)
 function formatDuration(duration) {
 	const durationArr = duration.split(':');
 	return `${durationArr[0]} Hr ${durationArr[1]} Min`;
@@ -444,10 +504,13 @@ $(function() {
 	renderTask();
 });
 
+// render task function when task data change
 function renderTask() {
+	// empty html before render
 	$('#panel-content').html('');
 	$('#course_list').html('');
 
+	// render course list
 	tasks.forEach((task, index) => {
 		$('#course_list').append(`
 			<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name ${curTaskIndex === index ? 'active': ''}">${task.courseName}</div>
@@ -456,10 +519,11 @@ function renderTask() {
 
 	const task = tasks[curTaskIndex];
 	const columns = task.columns;
+	// render columns
 	columns.forEach(col => {
 		let taskListHtml = ''
 		col.taskList.forEach((item, index) => {
-			if (filterText === '' || (item.title.indexOf(filterText) >=0 || item.description.indexOf(filterText) >=0)) {
+			if (filterText === '' || (item.title.toLowerCase().indexOf(filterText.toLowerCase()) >=0 || item.description.toLowerCase().indexOf(filterText.toLowerCase()) >=0)) {
 				taskListHtml += `
 				<div id="${Date.now() + index}" draggable="true" class="w-11/12 mx-auto bg-white p-4 rounded-2xl shadow-lg mb-2 task task-item">
 					<div class="flex">
@@ -483,6 +547,7 @@ function renderTask() {
 			}
 		});
 
+		// task wrapper
 		let panelHtml = `
 			<div class="inline-flex flex-col mx-8 h-fit panel">
 				<div class="inline-flex justify-center items-center">
@@ -499,26 +564,29 @@ function renderTask() {
 		$('#panel-content').append(panelHtml);
 	});
 
-	// 打开添加资源弹窗
+	// task add button click event
 	$(".add-task").click(function () {
 		curTask = $(this).data('col');
 		$(".task-add-panel").removeClass("hidden");
 	});
 
-	// 鼠标悬浮时显示编辑按钮
+	// show/hide edit button when mouse hover
 	$('.task-item').hover(function() {
 		$('.task-edit',this).removeClass('hidden');
 	},function() {
 		$('.task-edit',this).addClass('hidden');
 	});
 
-	// 打开编辑资源弹窗并赋值
+	// task edit button click event
 	$(".task-edit").click(function () {
 		$(".task-edit-panel").removeClass("hidden");
+
+		// find task by data-col
 		curEditTask = $(this).data('col');
 		const colArr = curEditTask.split('-');
 		const findTask = tasks.find(task => task.courseName === colArr[0]);
 		if (findTask) {
+			// formate data
 			const findColumn = findTask.columns.find(col => col.columnName === colArr[1]);
 			const taskItem = findColumn.taskList[Number(colArr[2])];
 
@@ -528,6 +596,7 @@ function renderTask() {
 
 			const durationArr = taskItem.duration.split(':');
 
+			// set data to input
 			$('#edit_title').val(taskItem.title);
 			$('#edit_description').val(taskItem.description);
 			$('#edit_subject').val(taskItem.subject);
@@ -538,15 +607,18 @@ function renderTask() {
 		}
 	});
 
+	// bind task item drag start event
 	$('.task-list > div').bind('dragstart', function(e) {
 		e.dataTransfer = e.originalEvent.dataTransfer;
 		e.dataTransfer.setData("task", e.target.id);
 	})
 
+	// bind task item drag over event
 	$('.task-list').bind('dragover', function(e) {
 		e.preventDefault();
 	})
 
+	// bind task list drop event
 	$('.task-list').bind('drop', function(e) {
 		e.preventDefault();
 		e.dataTransfer = e.originalEvent.dataTransfer;
@@ -554,13 +626,14 @@ function renderTask() {
 		e.currentTarget.appendChild(document.getElementById(taskId));
 	})
 
+	// course button click event
 	$('.task .task-name').click(function() {
 		curTaskIndex = $(".task .task-name").index(this);
 		renderTask();
 	})
 }
 
-// 取消添加
+// cancel add task and reset input value
 $("#add_cancel").click(function () {
 	$('#add_title').val('');
 	$('#add_description').val('');
@@ -570,8 +643,10 @@ $("#add_cancel").click(function () {
 	$('#add_duration').val('');
 	$(".task-add-panel").addClass("hidden");
 });
-// 保存
+
+// task save button click event
 $("#add_save").click(function () {
+	// get input value
 	const title = $('#add_title').val();
 	const description = $('#add_description').val();
 	const subject = $('#add_subject').val();
@@ -582,6 +657,7 @@ $("#add_save").click(function () {
 	const curTaskArr = curTask.split('-');
 	const findTask = tasks.find(task => task.courseName === curTaskArr[0]);
 
+	// set to task data
 	if (findTask) {
 		const findColumn = findTask.columns.find(col => col.columnName === curTaskArr[1]);
 		if (findColumn) {
@@ -596,6 +672,7 @@ $("#add_save").click(function () {
 		}
 	}
 
+	// reset input value
 	$('#add_title').val('');
 	$('#add_description').val('');
 	$('#add_subject').val('');
@@ -607,10 +684,13 @@ $("#add_save").click(function () {
 	renderTask();
 });
 
+// task delete button click event
 $('#edit_delete').click(function() {
+	// find task by data col
 	const colArr = curEditTask.split('-');
 	const findTask = tasks.find(task => task.courseName === colArr[0]);
 	if (findTask) {
+		// remove it from task data
 		const findColumn = findTask.columns.find(col => col.columnName === colArr[1]);
 		findColumn.taskList.splice(Number(colArr[2]), 1);
 		renderTask();
@@ -618,13 +698,16 @@ $('#edit_delete').click(function() {
 	}
 });
 
+// task edit save button click event
 $('#edit_save').click(function() {
+	// find task by data col
 	const colArr = curEditTask.split('-');
 	const findTask = tasks.find(task => task.courseName === colArr[0]);
 	if (findTask) {
 		const findColumn = findTask.columns.find(col => col.columnName === colArr[1]);
 		const taskItem = findColumn.taskList[Number(colArr[2])];
 
+		// update data by input value
 		taskItem.title = $('#edit_title').val();
 		taskItem.description = $('#edit_description').val();
 		taskItem.subject = $('#edit_subject').val();
@@ -637,27 +720,31 @@ $('#edit_save').click(function() {
 	}
 });
 
-let filterText = '';
+let filterText = ''; // search task text
 
+// search button click event
 $('#search-btn').click(function() {
 	filterText = $('#search-text').val();
 	renderTask();
 });
 
-let loop = true;
+let loop = true; // music loop mode flag
 
+// loop button click event, switch to random button
 $('#loop-btn').click(function() {
 	$(this).hide();
 	$('#random-btn').show();
 	loop = false;
 });
 
+// random button click event, switch to loop button
 $('#random-btn').click(function() {
 	$(this).hide();
 	$('#loop-btn').show();
 	loop = true;
 });
 
+// content data
 const contents = [
 	{
 		courseName: 'DECO2014',
@@ -734,14 +821,16 @@ const contents = [
 	}
 ]
 
-let curContentIndex = 0;
-let curEditContent;
+let curContentIndex = 0; // current content index
+let curEditContent; // current edit content data
 
 $(function() {
 	renderContent();
 });
 
+// render content when content data change
 function renderContent() {
+	// empty html before render
 	$('#content-list').html('');
 	$('#content_list').html('');
 
@@ -753,8 +842,9 @@ function renderContent() {
 
 	const curContent = contents[curContentIndex];
 
+	// render content list
 	curContent.list.forEach((content, index) => {
-		if (filterContentText === '' || (content.title.indexOf(filterContentText) >= 0 || content.description.indexOf(filterContentText) >= 0)) {
+		if (filterContentText === '' || (content.title.toLowerCase().indexOf(filterContentText.toLowerCase()) >= 0 || content.description.toLowerCase().indexOf(filterContentText.toLowerCase()) >= 0)) {
 			let contentHtml = `
 				<div class="shadow-md rounded-xl w-80 px-4 py-2 m-2 content-item">
 					<div class="flex items-center">
@@ -776,6 +866,7 @@ function renderContent() {
 		}
 	});
 
+	// render additional quick add panel
 	$('#content-list').append(`
 		<div class="shadow-md rounded-xl w-80 px-4 py-2 m-2 content-item content-item-quick">
 			<div class="flex items-center">
@@ -794,14 +885,17 @@ function renderContent() {
 		</div>
 	`)
 
+	// show/hide edit button when mouse hover
 	$('.content-item').hover(function() {
 		$('.edit-resource',this).removeClass('hidden');
 	},function() {
 		$('.edit-resource',this).addClass('hidden');
 	});
 
+	// edit button click event
 	$('.edit-resource').click(function() {
 		$('.resource-add-panel').removeClass('hidden');
+		// find content and set data to input value
 		const id = $(this).data('id');
 		curEditContent = id;
 		const idArr = id.split('-');
@@ -815,15 +909,18 @@ function renderContent() {
 		}
 	});
 
+	// course button click event, switch course
 	$('.content .task-name').click(function() {
 		curContentIndex = $(".content .task-name").index(this);
 		renderContent();
 	});
 
+	// stop stopPropagation when click, avoid add
 	$('.content-item-quick').click(function(e) {
 		e.stopPropagation();
 	});
 
+	// then click other, if quick panel have value, add it to content list
 	$(document).click(function (e) {
 		const quickUrl = $('#quick_url').val();
 		const quickTitle = $('#quick_title').val();
@@ -842,11 +939,13 @@ function renderContent() {
 		}
 	})
 }
-
+// content edit save button click event
 $('#content_edit_save').click(function() {
+	// find the content
 	const idArr = curEditContent.split('-');
 	const findContent = contents.find(content => content.courseName === idArr[0]);
 	if (findContent) {
+		// update content data by input value
 		const content = findContent.list[Number(idArr[1])];
 		content.url = $('#edit_content_url').val();
 		content.title = $('#edit_content_title').val();
@@ -857,26 +956,34 @@ $('#content_edit_save').click(function() {
 	}
 });
 
+// content edit delete button click
 $('#content_edit_cancel').click(function() {
+	// find the content
 	const idArr = curEditContent.split('-');
 	const findContent = contents.find(content => content.courseName === idArr[0]);
 	if (findContent) {
+		// delete it from content list
 		findContent.list.splice(Number(idArr[1]), 1);
 		$('.resource-add-panel').addClass('hidden');
 		renderContent();
 	}
 });
 
+// content edit cancel button click event
 $('#content_add_cancel').click(function() {
 	$('.resource-edit-panel').addClass('hidden');
 });
 
+// content add save button click
 $('#content_add_save').click(function() {
+	// get add input value
 	const url = $('#add_content_url').val();
 	const title = $('#add_content_title').val();
 	const subject = $('#add_content_subject').val();
 	const description = $('#add_content_desc').val();
-	contents.push({
+	const content = contents[curContentIndex];
+	// push to content list
+	content.list.push({
 		url,
 		title,
 		subject,
@@ -887,20 +994,24 @@ $('#content_add_save').click(function() {
 	$('.resource-edit-panel').addClass('hidden');
 });
 
-let filterContentText = '';
+let filterContentText = ''; // content filter keyword text
 
+// content search button click event
 $('#content-search-btn').click(function() {
 	filterContentText = $('#content-search-text').val();
 	renderContent();
 });
 
+// add task course button click event
 $('#add_course_btn').click(function() {
 	$(this).hide();
 	$('.add-course-wrapper').show();
 });
 
+// when enter keydown, add course by input value
 $('#add_course_input').bind('keydown', function(e) {
 	if (e.key === 'Enter') {
+		// task add new course
 		tasks.push({
 			courseName: $(this).val(),
 			columns: []
@@ -911,14 +1022,16 @@ $('#add_course_input').bind('keydown', function(e) {
 		renderTask();
 	}
 })
-
+// add content course button click event, show course input
 $('#add_content_course_btn').click(function() {
 	$(this).hide();
 	$('.add-content-course-wrapper').show();
 });
 
+// when content enter keydown, add course by input value
 $('#add_content_course_input').bind('keydown', function(e) {
 	if (e.key === 'Enter') {
+		// content add new course
 		contents.push({
 			courseName: $(this).val(),
 			list: []
