@@ -5,6 +5,7 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>StudBud</title>
+		<link rel="icon" href="./favicon.ico">
 		<link rel="stylesheet" href="./styles/styles.scss" />
 		<script src="https://cdn.tailwindcss.com"></script>
 	</head>
@@ -24,11 +25,15 @@
 					<div class="w-28 sm:drop-shadow-lg sm:w-60 text-center py-3 rounded-lg bg-white task-btn">TASK</div>
 					<div class="w-28 sm:w-60 text-center rounded-lg py-3 content-btn">CONTENT</div>
 				</div>
-				<div class="flex items-center overflow-visible bg-green-100 rounded-3xl relative timer-wrapper">
-					<p class="text-3xl cursor-pointer timer">
+				<div class="flex items-center overflow-visible rounded-3xl relative timer-wrapper">
+					<div class="timer-btn cursor-pointer timer-time-nav">
+						<div id="timer_type" class="text-white" style="font-size: 12px;">POMODORO</div>
+						<div id="timer_time" class="text-white">25:00</div>
+					</div>
+					<p class="text-3xl cursor-pointer timer mr-1">
 						<svg t="1654178993727" class="icon" style="width: 1em;height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3702"><path d="M810.666667 314.453333l48.213333-48.213333a21.333333 21.333333 0 0 0 0-29.866667l-30.293333-30.293333a21.333333 21.333333 0 0 0-30.293334 0L750.933333 256A384 384 0 0 0 597.333333 180.48V128a42.666667 42.666667 0 0 0-42.666666-42.666667h-85.333334a42.666667 42.666667 0 0 0-42.666666 42.666667v52.48A384 384 0 0 0 128 554.666667a388.693333 388.693333 0 0 0 372.906667 384A384 384 0 0 0 810.666667 314.453333zM512 853.333333a298.666667 298.666667 0 1 1 298.666667-298.666666 298.666667 298.666667 0 0 1-298.666667 298.666666z m16.213333-512h-32.426666a21.333333 21.333333 0 0 0-21.333334 21.333334v213.333333a21.333333 21.333333 0 0 0 21.333334 21.333333h32.426666a21.333333 21.333333 0 0 0 21.333334-21.333333v-213.333333a21.333333 21.333333 0 0 0-21.333334-21.333334z" p-id="3703" data-spm-anchor-id="a313x.7781069.0.i1"></path></svg>
 					</p>
-					<p class="hidden sm:block text-green-600 sm:p-3 timer-btn cursor-pointer timer-time-nav">TIMER OFF</p>
+					<p class="hidden text-green-600 sm:p-3 timer-btn cursor-pointer timer-time-nav-off">TIMER OFF</p>
 					<div class="absolute right-4 top-16 text-black shadow-lg w-80 h-72 z-30 hidden timer-start bg-white">
 						<div class="mt-8 flex justify-center items-center">
 							<div class="bg-green-50 flex rounded-lg cursor-pointer">
@@ -78,10 +83,15 @@
 			<div class="w-full deco2014 main-section">
 				<div class="w-full task">
 					<div class="flex w-full h-20 mb-4 task-bar">
-						<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>
-						<div class="font-bold mr-4 cursor-pointer deco2020-btn task-name">DECO2020</div>
-						<div class="font-bold mr-4 cursor-pointer deco2017-btn task-name">DECO2017</div>
-						<div class="font-bold cursor-pointer add-task-name">+</div>
+						<div id="course_list" class="flex">
+							<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>
+							<div class="font-bold mr-4 cursor-pointer deco2020-btn task-name">DECO2020</div>
+							<div class="font-bold mr-4 cursor-pointer deco2017-btn task-name">DECO2017</div>
+						</div>
+						<div id="add_course_btn" class="font-bold cursor-pointer add-task-name">+</div>
+						<div class="font-bold mr-4 cursor-pointer deco2017-btn add-course-wrapper hidden">
+							<input id="add_course_input" />
+						</div>
 						<div class="ml-auto flex items-center search-wrapper">
 							<input id="search-text" type="search" class="p-3" />
 							<img id="search-btn" src="./images/search.png" alt="" />
@@ -116,7 +126,7 @@
 									<div class="mr-8 input-group mb-8">
 										<input id="add_title" type="text" class="w-80 block add-title" placeholder="Title" />
 										<input id="add_description" type="text" class="w-80 block add-desc" placeholder="Description" />
-										<input id="add_subject" type="text" class="w-80 block add-subject" placeholder="Subject" />
+										<input id="add_subject" type="text" class="w-80 block add-subject" placeholder="Label" />
 									</div>
 									<div class="mr-8 input-group">
 										<select id="add_status" name="" class="block w-80 add-prior">
@@ -166,7 +176,7 @@
 									<div class="mr-8 input-group mb-8">
 										<input id="edit_title" type="text" class="w-80 block add-title" placeholder="Title" />
 										<input id="edit_description" type="text" class="w-80 block add-desc" placeholder="Description" />
-										<input id="edit_subject" type="text" class="w-80 block add-subject" placeholder="Subject" />
+										<input id="edit_subject" type="text" class="w-80 block add-subject" placeholder="Label" />
 									</div>
 									<div class="mr-8 input-group">
 										<select id="edit_status" name="" class="block w-80 add-prior">
@@ -185,10 +195,10 @@
 										<input id="edit_duration" type="time" class="w-80 block" style="padding: 0" />
 									</div>
 									<div class="input-group mb-4">
-										<select name="" class="block w-80 add-status">
+										<select id="edit_column" class="block w-80 add-status">
 											<option value="">Status</option>
 											<option value="To Do">To Do</option>
-											<option value="In Progress">In Progress</option>
+											<option value="On Process">On Process</option>
 											<option value="Done">Done</option>
 										</select>
 									</div>
@@ -203,10 +213,15 @@
 				</div>
 				<div class="w-full content hidden">
 					<div class="flex w-full h-20 mb-4 task-bar">
-						<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>
-						<div class="font-bold mr-4 cursor-pointer deco2020-btn task-name">DECO2020</div>
-						<div class="font-bold mr-4 cursor-pointer deco2017-btn task-name">DECO2017</div>
-						<div class="font-bold cursor-pointer add-task-name">+</div>
+						<div id="content_list" class="flex">
+							<div class="font-bold mr-4 cursor-pointer deco2014-btn task-name active">DECO2014</div>
+							<div class="font-bold mr-4 cursor-pointer deco2020-btn task-name">DECO2020</div>
+							<div class="font-bold mr-4 cursor-pointer deco2017-btn task-name">DECO2017</div>
+						</div>
+						<div id="add_content_course_btn" class="font-bold cursor-pointer add-task-name">+</div>
+						<div class="font-bold mr-4 cursor-pointer deco2017-btn add-content-course-wrapper hidden">
+							<input id="add_content_course_input" />
+						</div>
 						<div class="ml-auto flex items-center search-wrapper">
 							<input id="content-search-text" type="search" class="p-3" />
 							<img id="content-search-btn" src="./images/search.png" alt="" />
@@ -245,6 +260,31 @@
 							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-xl">
 								<button id="content_add_cancel" class="flex-1 rounded-bl-xl font-bold text-lg text-white cancel-add">Cancel</button>
 								<button id="content_add_save" class="flex-1 rounded-br-xl font-bold text-lg text-white save-task">Save</button>
+							</div>
+						</div>
+					</div>
+
+					<div class="absolute left-0 top-0 w-full h-full flex justify-center items-center resource-add-panel hidden">
+						<div class="absolute opacity-50 w-full h-full left-0 top-0 bg-gray-300"></div>
+
+						<div class="w-2/5 bg-white z-20 opacity-100 p-8 rounded-xl relative add-resource">
+							<div class="flex justify-center items-center mb-8">
+								<h1 class="ml-auto font-bold text-xl">Edit Resource</h1>
+								<p class="ml-auto font-bold text-xl text-purple-400 resource-add-panel-close cursor-pointer">
+									<img src="./images/close.png" width="20" height="20">
+								</p>
+							</div>
+							<div class="px-4 input-group mb-4">
+								<input id="edit_content_url" type="text" class="p-4 w-full mb-4 block res-add-url" placeholder="URL" />
+								<input id="edit_content_title" type="text" class="p-4 w-full mb-4 block res-add-title" placeholder="Title" />
+								<input id="edit_content_subject" type="text" class="p-4 w-full mb-4 block res-add-subject" placeholder="Subject" />
+							</div>
+							<div class="px-4 input-group mb-10">
+								<textarea id="edit_content_desc" class="w-full h-24" style="background-color: transparent;outline: none;resize: none" placeholder="Add the Description here..."></textarea>
+							</div>
+							<div class="absolute bottom-0 left-0 w-full flex h-12 rounded-b-xl">
+								<button id="content_edit_cancel" class="flex-1 rounded-bl-xl font-bold text-lg text-white cancel-delete">Delete</button>
+								<button id="content_edit_save" class="flex-1 rounded-br-xl font-bold text-lg text-white save-task">Save</button>
 							</div>
 						</div>
 					</div>
@@ -290,7 +330,7 @@
 								<p class="font-bold music-name">Peaches</p>
 								<p class="music-artist">Justin bieber</p>
 							</div>
-							<div class="ml-auto">
+							<div class="ml-auto cursor-pointer music-item-play">
 								<img src="./images/play.png" class="w-4 h-4" alt="" />
 							</div>
 						</div>
@@ -303,7 +343,7 @@
 								<p class="font-bold music-name">Old Town Road</p>
 								<p class="music-artist">Lil Nas X</p>
 							</div>
-							<div class="ml-auto">
+							<div class="ml-auto cursor-pointer music-item-play">
 								<img src="./images/play.png" class="w-4 h-4" alt="" />
 							</div>
 						</div>
@@ -316,7 +356,7 @@
 								<p class="font-bold music-name">The Lazy Song</p>
 								<p class="music-artist">Bruno Mars</p>
 							</div>
-							<div class="ml-auto">
+							<div class="ml-auto cursor-pointer music-item-play">
 								<img src="./images/play.png" class="w-4 h-4" alt="" />
 							</div>
 						</div>
@@ -329,20 +369,20 @@
 								<p class="font-bold music-name">Blow</p>
 								<p class="music-artist">Jackson Wang</p>
 							</div>
-							<div class="ml-auto">
+							<div class="ml-auto cursor-pointer music-item-play">
 								<img src="./images/play.png" class="w-4 h-4" alt="" />
 							</div>
 						</div>
 						<div class="flex items-center p-2">
 							<div class="mr-2">05</div>
 							<div class="mr-2 ml-5">
-								<img src="./images/music/old_town_road.webp" class="w-10 h-10 music-img" alt="" />
+								<img src="./images/music/my_universe.webp" class="w-10 h-10 music-img" alt="" />
 							</div>
 							<div class="mr-10">
 								<p class="font-bold music-name">My Universe</p>
 								<p class="music-artist">Coldplay BTS</p>
 							</div>
-							<div class="ml-auto">
+							<div class="ml-auto cursor-pointer music-item-play">
 								<img src="./images/play.png" class="w-4 h-4" alt="" />
 							</div>
 						</div>

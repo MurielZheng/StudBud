@@ -157,16 +157,21 @@ div,body {
 	font-size: 20px;
 	font-weight: bold;
 }
+.timer-time-nav {
+	padding: 5px 15px;
+	text-align: center;
+}
 .timer {
-	width: 35px;
-	height: 35px;
-	background-color: #52d88c;
-	color: #ffffff;
+	width: 40px;
+	height: 40px;
+	background-color: #ffffff;
+	color: #52d88c;
 	border-radius: 50%;
-	font-size: 35px !important;
+	font-size: 40px !important;
 }
 .timer-wrapper {
 	padding-left: 5px;
+	background-color: #52d88c;
 }
 .task-bar {
 	background-color: #f8f9fd;
@@ -254,6 +259,10 @@ div,body {
 .playlist-scroll {
 	max-height: 300px;
 	overflow-y: auto;
+
+	> div.active {
+		background-color: #f6f6f6;
+	}
 }
 .bottom-music-player {
 	background-color: #ffffff;
@@ -306,6 +315,7 @@ div,body {
 			.timer {
 				color: #51b87c;
 				background-color: transparent;
+				z-index: 99;
 			}
 		}
 	}
@@ -463,19 +473,25 @@ div,body {
 }
 
 .content-item {
+	position: relative;
 	> div {
 		color: #8261D9;
 		p:first-child {
 			font-size: 20px;
 		}
 		p:last-child {
-			display: flex;
-			justify-content: center;
-			align-items: center;
+			position: absolute;
+			right: 1rem;
 			width: 22px;
 			height: 22px;
+			text-align: center;
+			line-height: 22px;
 			border-radius: 5px;
 			background: rgba(80, 48, 229, 0.2);
+
+			> svg {
+				margin: 3px auto;
+			}
 		}
 	}
 	hr {
@@ -496,4 +512,34 @@ div,body {
 .add-new-resource-wrapper {
 	background-color: #a5a8fc;
 	border-radius: 30px 0 0 30px;
+}
+
+.add-course-wrapper, .add-content-course-wrapper {
+	color: #cfe0f6;
+	height: 40px;
+	background-color: #eaeef8;
+	border-radius: 16px;
+	padding: 0 15px;
+	line-height: 40px;
+	border: 2px solid #76a5ea;
+
+	input {
+		background-color: transparent;
+		outline: none;
+		width: 100px;
+		color: #76a5ea;
+	}
+}
+
+.content-item-quick {
+	background-color: #F2EFF9;
+
+	input, textarea {
+		background-color: transparent;
+		outline: none;
+	}
+	textarea {
+		width: 100%;
+		resize: none;
+	}
 }
